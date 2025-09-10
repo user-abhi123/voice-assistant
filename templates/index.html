@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Abhishek's Voice Assistant</title>
-    <link rel="stylesheet" href="/static/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>🎙️ Abhishek's Voice Assistant</title>
+  <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <div class="container">
-        <img src="/static/images/logo.png" alt="Assistant Logo" class="logo">
-        <h1>🎙️ Abhishek's Voice Assistant</h1>
-        <button id="mic-button" onclick="startListening()">🎤 Tap to Speak</button>
-        <div id="output-box">
-            <p id="output">Say something like “Play Shape of You on YouTube”</p>
-        </div>
-    </div>
-    <script src="/static/js/script.js"></script>
+  <div class="container">
+    <h1>🎙️ Abhishek's Voice Assistant</h1>
+    <div class="chat-box" id="chat-box"></div>
+    <form method="POST" id="command-form">
+      <input type="text" name="command" id="command-input" placeholder="Say something..." required>
+      <button type="submit">Send</button>
+      <button type="button" id="mic-button">🎤</button>
+    </form>
+  </div>
+  <script src="/static/js/script.js"></script>
 </body>
 </html>
