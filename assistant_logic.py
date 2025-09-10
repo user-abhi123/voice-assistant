@@ -5,12 +5,12 @@ def process_command(command):
     command = command.lower()
 
     if "open youtube" in command:
-        return "trigger_open_youtube"
+        return "Opening YouTube|trigger_open_youtube"
     elif "open google" in command:
-        return "trigger_open_google"
+        return "Opening Google|trigger_open_google"
     elif "search" in command:
         query = command.split("search", 1)[-1].strip()
-        return f"trigger_search:{query}"
+        return f"Searching Google for {query}|trigger_search:{query}"
     elif "time" in command:
         india_tz = pytz.timezone('Asia/Kolkata')
         now = datetime.datetime.now(india_tz)

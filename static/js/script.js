@@ -1,46 +1,41 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const responseText = document.getElementById("response")?.innerText;
   const form = document.getElementById("command-form");
   const input = document.getElementById("command-input");
   const chatBox = document.getElementById("chat-box");
   const micButton = document.getElementById("mic-button");
 
-  // Voice output
   const speak = (text) => {
     const utterance = new SpeechSynthesisUtterance(text);
     speechSynthesis.speak(utterance);
   };
 
-  // Handle response triggers
-  const handleResponse = (text) => {
-    if (text === "trigger_open_youtube") {
-      window.open("https://www.youtube.com", "_blank");
-      speak("Opening YouTube");
-    } else if (text === "trigger_open_google") {
-      window.open("https://www.google.com", "_blank");
-      speak("Opening Google");
-    } else if (text.startsWith("trigger_search:")) {
-      const query = text.split(":")[1];
-      window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, "_blank");
-      speak(`Searching Google for ${query}`);
-    } else {
-      speak(text);
-    }
-
+  const addChatBubble = (role, message) => {
     const bubble = document.createElement("div");
-    bubble.className = "response";
-    bubble.innerText = text;
+    bubble.className = role;
+    bubble.innerText = message;
     chatBox.appendChild(bubble);
+    chatBox.scrollTop = chatBox.scrollHeight;
   };
 
-  // Handle form submission
+  const handleResponse = (raw) => {
+    const [text, trigger] = raw.split("|");
+    addChatBubble("assistant", text);
+    speak(text);
+
+    if (trigger === "trigger_open_youtube") {
+      window.open("https://www.youtube.com", "_blank");
+    } else if (trigger === "trigger_open_google") {
+      window.open("https://www.google.com", "_blank");
+    } else if (trigger?.startsWith("trigger_search:")) {
+      const query = trigger.split(":")[1];
+      window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, "_blank");
+    }
+  };
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const command = input.value;
-    const userBubble = document.createElement("div");
-    userBubble.className = "user";
-    userBubble.innerText = command;
-    chatBox.appendChild(userBubble);
+    addChatBubble("user", command);
 
     const res = await fetch("/", {
       method: "POST",
@@ -55,7 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
     input.value = "";
   });
 
-  // Voice input
   micButton.addEventListener("click", () => {
     const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
     recognition.onresult = (event) => {

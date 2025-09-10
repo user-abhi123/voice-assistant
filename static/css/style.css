@@ -22,6 +22,7 @@ h1 {
 form {
   display: flex;
   gap: 10px;
+  margin-top: 10px;
 }
 
 input[type="text"] {
@@ -40,22 +41,25 @@ button {
   margin-top: 20px;
   max-height: 300px;
   overflow-y: auto;
-}
-
-.response, .user {
+  border: 1px solid #ccc;
   padding: 10px;
-  margin: 5px 0;
   border-radius: 8px;
-}
-
-.response {
-  background: #e0e0e0;
-  text-align: left;
 }
 
 .user {
   background: #d1e7dd;
   text-align: right;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 8px;
+}
+
+.assistant {
+  background: #f0f0f0;
+  text-align: left;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 8px;
 }
 
 @media (max-width: 600px) {
