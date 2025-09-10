@@ -1,0 +1,73 @@
+body {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(135deg, #1f1c2c, #928dab);
+    color: #fff;
+    text-align: center;
+    padding: 30px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.logo {
+    width: 80px;
+    margin-bottom: 20px;
+    animation: pulse 2s infinite;
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #f0f0f0;
+}
+
+#mic-button {
+    background: #ff4081;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    box-shadow: 0 0 10px #ff4081;
+}
+
+#mic-button:hover {
+    background: #e91e63;
+}
+
+#mic-button.listening {
+    animation: glow 1s infinite alternate;
+}
+
+#output-box {
+    margin-top: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    white-space: pre-line;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 10px #ff4081;
+    }
+    to {
+        box-shadow: 0 0 20px #ff4081;
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
